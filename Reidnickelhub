@@ -1,0 +1,107 @@
+local AllowRunService = false
+
+local AllowRunServiceBind = Instance.new("BindableFunction")
+function AllowRunServiceBind.OnInvoke(args)
+    if args == "Enable" then
+        AllowRunService = true
+    elseif args == "Disable" then
+        AllowRunService = false
+    end
+    local CoreGui = game:GetService("StarterGui")
+    CoreGui:SetCore("SendNotification", {
+        Title = "Auto Get Dark Dagger",
+        Text = "Auto Dark Dagger script created by Reid#0361",
+        Duration = math.huge,
+        Callback = AllowRunServiceBind,
+        Button1 = "Enable",
+        Button2 = "Disable",
+    })
+end
+
+local CoreGui = game:GetService("StarterGui")
+CoreGui:SetCore("SendNotification", {
+    Title = "Auto Get Dark Dagger",
+    Text = "Auto Dark Dagger script created by Reid#0361",
+    Duration = math.huge,
+    Callback = AllowRunServiceBind,
+    Button1 = "Enable",
+    Button2 = "Disable",
+})
+
+local MethodFarm = CFrame.new(0, 0, 0) -- Replace with your desired CFrame value
+
+local function AutoHaki()
+    -- Define your AutoHaki function implementation here
+    -- Example:
+    print("AutoHaki function called")
+end
+
+local function EquipWeapon(weapon)
+    -- Define your EquipWeapon function implementation here
+    -- Example:
+    print("Equipping weapon:", weapon)
+end
+
+local function TP(cframe)
+    -- Define your TP (teleport) function implementation here
+    -- Example:
+    print("Teleporting to:", cframe)
+end
+
+local function Hop()
+    -- Define your Hop function implementation here
+    -- Example:
+    print("Hopping")
+end
+
+spawn(function()
+    while true do
+        if AllowRunService then
+            local AutoDarkDagger = true -- Replace with your AutoDarkDagger state variable
+            if AutoDarkDagger then
+                local ripIndra = game:GetService("Workspace").Enemies:FindFirstChild("rip_indra True Form [Lv. 5000] [Raid Boss]")
+                    or game:GetService("Workspace").Enemies:FindFirstChild("rip_indra [Lv. 5000] [Raid Boss]")
+
+                if ripIndra then
+                    for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if (v.Name == "rip_indra True Form [Lv. 5000] [Raid Boss]" or v.Name == "rip_indra [Lv. 5000] [Raid Boss]")
+                            and v.Humanoid.Health > 0 and v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+                            repeat
+                                task.wait()
+                                pcall(function()
+                                    AutoHaki()
+                                    local Select_Weapon = nil -- Replace with the weapon you want to equip
+                                    EquipWeapon(Select_Weapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+                                    TP(v.HumanoidRootPart.CFrame * MethodFarm)
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670), workspace.CurrentCamera.CFrame)
+                                end)
+                            until not AutoDarkDagger or v.Humanoid.Health <= 0
+                        end
+                    end
+                else
+                    TP(CFrame.new(-5344.822265625, 423.98541259766, -2725.0930175781))
+                end
+            end
+        end
+        wait()
+    end
+end)
+
+spawn(function()
+    while true do
+        if AllowRunService then
+            local AutoDarkDagger_Hop = true -- Replace with your AutoDarkDagger_Hop state variable
+            local AutoDarkDagger = true -- Replace with your AutoDarkDagger state variable
+            local World3 = true -- Replace with your World3 state variable
+            if AutoDarkDagger_Hop and AutoDarkDagger and World3
+                and not game:GetService("ReplicatedStorage"):FindFirstChild("rip_indra True Form [Lv. 5000] [Raid Boss]")
+                and not game:GetService("Workspace").Enemies:FindFirstChild("rip_indra True Form [Lv. 5000] [Raid Boss]") then
+                Hop()
+            end
+        end
+        wait()
+    end
+end)
